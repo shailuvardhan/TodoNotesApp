@@ -1,0 +1,31 @@
+.notes-area-container {
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.add-notes-icon-container {
+  height: 10vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.plus-icon {
+  font-size: 80px;
+  font-weight: bold;
+  color: #007bff;
+  background-color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.plus-icon:hover {
+  background-color: #f0f0f0;
+}
+
+.plus-icon:active {
+  transform: scale(0.9);
+}

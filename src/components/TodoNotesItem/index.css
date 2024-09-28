@@ -1,0 +1,30 @@
+.list-item {
+  width: 30%;
+  height: 170px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 0px 4px 16px 0px #bfbfbf;
+  margin: 10px;
+  padding: 10px;
+}
+.data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list-title {
+  margin: 0px;
+}
+
+.icons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+.list-icon {
+  font-size: 20px;
+  color: grey;
+}
