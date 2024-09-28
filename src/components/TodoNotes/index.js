@@ -64,9 +64,12 @@ class TodoNotes extends Component {
       id: uuidv4(),
       title,
       description,
-      date: date.toLocaleDateString(),
+      date: new Date(date).toLocaleDateString(),
     };
-    console.log(newTodo);
+    this.setState((prevState) => ({
+      userNotesList: [...prevState.userNotesList, newTodo],
+    }));
+    this.setState({ title: "", description: "", date: "" });
   };
 
   render() {
