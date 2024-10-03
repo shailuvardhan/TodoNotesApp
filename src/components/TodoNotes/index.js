@@ -79,18 +79,32 @@ class TodoNotes extends Component {
     );
 
     return (
-      <div className="todo-app-container">
+      <ul className="todo-app-container">
         <Header onChangetitlename={this.onChangetitlename} />
         <ul className="notes-area-container">
-          {filteredNotesList.map((eachItem) => (
-            <TodoNotesItem
-              key={eachItem.id}
-              NotesDetails={eachItem}
-              onClickButton={this.onClickButton}
-              onClickedPin={this.onClickedPin}
-              ishighlighted
-            />
-          ))}
+          {filteredNotesList.length > 0 ? (
+            filteredNotesList.map((eachItem) => (
+              <TodoNotesItem
+                key={eachItem.id}
+                NotesDetails={eachItem}
+                onClickButton={this.onClickButton}
+                onClickedPin={this.onClickedPin}
+                ishighlighted
+              />
+            ))
+          ) : (
+            <div className="no-notes-view">
+              <img
+                src="https://res-console.cloudinary.com/dpt1h4mci/thumbnails/v1/image/upload/v1727550730/YWRkLW5vdGVzLWNvbmNlcHQtaWxsdXN0cmF0aW9uXzExNDM2MC0yNDk2X3ZkbWp4dw==/drilldown"
+                className="add-img"
+                alt="addNoteImg"
+              />{" "}
+              <br />
+              <a href="#AddNotes" onClick={this.onClickAddNote}>
+                Add Notes
+              </a>
+            </div>
+          )}
         </ul>
         <AddNote
           popupVisible={popupVisible}
@@ -103,10 +117,10 @@ class TodoNotes extends Component {
           date={date}
           onChangeDate={this.onChangeDate}
         />
-        <div className="add-notes-icon-container">
+        <div className="add-notes-icon-container" id="AddNotes">
           <CiCirclePlus className="plus-icon" onClick={this.onClickAddNote} />
         </div>
-      </div>
+      </ul>
     );
   }
 }

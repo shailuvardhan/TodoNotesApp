@@ -29,3 +29,14 @@
 .plus-icon:active {
   transform: scale(0.9);
 }
+
+.no-notes-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.add-img {
+  width: 50%;
+}

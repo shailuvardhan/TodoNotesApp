@@ -15,7 +15,7 @@
 }
 
 .list-title {
-  margin: 0px;
+  margin: 10px;
 }
 
 .icons-container {
@@ -32,4 +32,10 @@
 
 .pinned {
   color: blue;
+}
+.list-date {
+  color: grey;
+}
+.description {
+  height: fit-content;
 }
