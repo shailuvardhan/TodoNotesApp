@@ -7,31 +7,10 @@ import AddNote from "../AddNote";
 import "./index.css";
 import { CiCirclePlus } from "react-icons/ci";
 
-let initialUserNotesList = [
-  {
-    id: 0,
-    title: "note1",
-    description: "first note",
-    date: "1",
-  },
-  {
-    id: 1,
-    title: "note2",
-    description: "second note",
-    date: "2",
-  },
-  {
-    id: 2,
-    title: "note3",
-    description: "Third note",
-    date: "",
-  },
-];
-
 class TodoNotes extends Component {
   state = {
     searchInput: "",
-    userNotesList: initialUserNotesList,
+    userNotesList: [],
     popupVisible: false,
     title: "",
     description: "",
@@ -56,20 +35,33 @@ class TodoNotes extends Component {
   onChangeDate = (event) => {
     this.setState({ date: event.target.value });
   };
+  onChangetitlename = (event) => {
+    this.setState({ searchInput: event.target.value });
+  };
 
   onSubmitForm = (event) => {
     event.preventDefault();
     const { title, description, date } = this.state;
-    const newTodo = {
-      id: uuidv4(),
-      title,
-      description,
-      date: new Date(date).toLocaleDateString(),
-    };
-    this.setState((prevState) => ({
-      userNotesList: [...prevState.userNotesList, newTodo],
-    }));
+    if (title !== "" && description !== "" && date !== "") {
+      const newTodo = {
+        id: uuidv4(),
+        title,
+        description,
+        date: new Date(date).toLocaleDateString(),
+      };
+      this.setState((prevState) => ({
+        userNotesList: [...prevState.userNotesList, newTodo],
+      }));
+    }
     this.setState({ title: "", description: "", date: "" });
+  };
+
+  onClickButton = (id) => {
+    const { userNotesList } = this.state;
+    const filteredNotesList = userNotesList.filter(
+      (eachItem) => eachItem.id !== id
+    );
+    this.setState({ userNotesList: filteredNotesList });
   };
 
   render() {
@@ -80,12 +72,24 @@ class TodoNotes extends Component {
       description,
       date,
     } = this.state;
+
+    const { searchInput } = this.state;
+    const filteredNotesList = userNotesList.filter((eachItem) =>
+      eachItem.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
     return (
       <div className="todo-app-container">
-        <Header />
+        <Header onChangetitlename={this.onChangetitlename} />
         <ul className="notes-area-container">
-          {userNotesList.map((eachItem) => (
-            <TodoNotesItem key={eachItem.id} NotesDetails={eachItem} />
+          {filteredNotesList.map((eachItem) => (
+            <TodoNotesItem
+              key={eachItem.id}
+              NotesDetails={eachItem}
+              onClickButton={this.onClickButton}
+              onClickedPin={this.onClickedPin}
+              ishighlighted
+            />
           ))}
         </ul>
         <AddNote

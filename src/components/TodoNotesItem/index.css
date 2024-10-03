@@ -27,4 +27,9 @@
 .list-icon {
   font-size: 20px;
   color: grey;
+  cursor: pointer;
+}
+
+.pinned {
+  color: blue;
 }

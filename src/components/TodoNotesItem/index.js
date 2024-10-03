@@ -1,11 +1,15 @@
-import { FaPen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 import "./index.css";
 
 const TodoNotesItem = (props) => {
-  const { NotesDetails } = props;
-  const { title, description, date } = NotesDetails;
+  const { NotesDetails, onClickButton } = props;
+  const { id, title, description, date } = NotesDetails;
+
+  const onClickedbutton = () => {
+    onClickButton(id);
+  };
+
   return (
     <li className="list-item">
       <div className="data-container">
@@ -14,8 +18,7 @@ const TodoNotesItem = (props) => {
         <p className="description">{description}</p>
       </div>
       <div className="icons-container">
-        <FaPen className="list-icon" />
-        <MdDelete className="list-icon" />
+        <MdDelete className="list-icon" onClick={onClickedbutton} />
       </div>
     </li>
   );
